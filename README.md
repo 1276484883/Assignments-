@@ -1,2 +1,26 @@
-# Assignments-
-New assignments!!
+# CPU VS GPU VS TPU VS NPU
+Modern computing workloads have outgrown the "one-size-fits-all" processor model. While the Central Processing Unit (CPU) remains the foundational orchestrator of general-purpose computing, the exponential rise of 3D graphics, big data analytics, and artificial intelligence (AI) has driven the adoption of specialized hardware accelerators. Graphics Processing Units (GPUs), Tensor Processing Units (TPUs), and Neural Processing Units (NPUs) trade general-purpose flexibility for massive parallel throughput and energy efficiency. Understanding the architectural trade-offs among these four processing units is essential for designing scalable cloud infrastructure and responsive edge systems.  
+2. Architectural Breakdown
+Central Processing Unit (CPU)
+ Primary Design Philosophy: Low-latency, sequential execution and complex control logic.
+ Core Architecture: Comprises a small number of highly sophisticated cores (typically 4 to 128 in consumer and server chips) operating at high clock speeds (3.0–5.5+ GHz). Each core features large caches (L1, L2, L3), advanced branch prediction, and out-of-order execution engines.
+ Strengths & Limitations: Excels at single-threaded tasks, operating system management, complex branching, and I/O coordination. However, its limited core count creates a bottleneck when executing millions of identical mathematical operations simultaneously.  
+Graphics Processing Unit (GPU)
+ Primary Design Philosophy: High-throughput, massively parallel processing.  
+ Core Architecture: Contains thousands of smaller, simpler Arithmetic Logic Units (ALUs) organized into streaming multiprocessors. Operates on a Single Instruction, Multiple Data (SIMD) or Single Instruction, Multiple Threads (SIMT) paradigm, dedicating minimal silicon to control logic and cache. Modern GPUs (e.g., NVIDIA Blackwell/Hopper architectures) also integrate dedicated Tensor Cores to accelerate mixed-precision matrix math.  
+ Strengths & Limitations: Ideal for graphics rendering, scientific simulations, and training large deep learning models. Its primary trade-offs are high thermal design power (TDP) and a dependency on a host CPU to manage system-level scheduling.  
+Tensor Processing Unit (TPU)
+ Primary Design Philosophy: Domain-specific acceleration for large-scale matrix and tensor operations.  
+ Core Architecture: An Application-Specific Integrated Circuit (ASIC) pioneered by Google. Unlike GPUs, which retain hardware for rasterization and general parallel compute, TPUs strip away graphics pipelines in favor of massive Systolic Arrays (Matrix Multiply Units). Data flows rhythmically through a grid of multiply-accumulate (MAC) units, reusing weights and partial sums directly from registers without repeatedly accessing off-chip memory.  
+ Strengths & Limitations: Delivers superior performance-per-watt and throughput for training and serving massive foundation models in data centers. However, it is largely confined to cloud environments (such as Google Cloud) and lacks the versatility required for non-tensor workloads.  
+Neural Processing Unit (NPU)
+ Primary Design Philosophy: Ultra-low-power, real-time AI inference on edge and client devices.  
+ Core Architecture: A specialized neural accelerator embedded directly within a System-on-Chip (SoC)—such as Apple’s Neural Engine, Qualcomm’s Hexagon NPU, or Intel/AMD AI PC silicon. NPUs prioritize specialized data flows, tight on-chip SRAM memory hierarchies, and hardware support for low-precision quantization (e.g., INT8, INT4, FP8) to minimize data movement and battery drain.  
+ Strengths & Limitations: Enables continuous, low-latency, private on-device AI (e.g., real-time voice transcription, background blur, local Small Language Models) at a fraction of a watt. It is not designed for training massive neural networks from scratch.
+. Workload Selection & Deployment Scenarios
+1 Enterprise & System Infrastructure (CPU): Running web servers, relational databases, virtualization hypervisors, and classical machine learning algorithms (e.g., XGBoost, decision trees) where conditional branching (⁠if/else⁠ logic) dominates execution time.  
+2 Graphics, Simulation & Flexible AI Research (GPU): Training custom neural network architectures in PyTorch/TensorFlow, rendering real-time ray-traced 3D environments, and running scientific fluid-dynamics simulations that benefit from general-purpose parallel programmability (CUDA/ROCm).  
+3 Hyperscale Foundation Model Training (TPU): Training and serving multi-billion or trillion-parameter Large Language Models (LLMs) in cloud pods, where high-speed inter-chip interconnects and systolic matrix multiplication maximize throughput per dollar and per watt.  
+4 Edge Computing & Client Devices (NPU): Executing real-time biometric authentication, camera computational photography, live noise cancellation, and local AI assistants on smartphones and laptops without draining battery life or sending sensitive user data to the cloud.
+5. Conclusion
+Rather than competing to replace one another, CPUs, GPUs, TPUs, and NPUs form a heterogeneous computing hierarchy. In a modern system, the CPU acts as the conductor—managing memory, I/O, and control flow—while delegating parallel graphics and heavy training to GPUs, hyperscale tensor math to cloud TPUs, and continuous, power-sensitive intelligence to local NPUs.
