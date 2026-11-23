@@ -1,10 +1,13 @@
 # Extended Comparative Analysis of Modern Processing Architectures: CPU, GPU, TPU, and NPU
 
 As computational demands scale from interactive desktop applications to trillion-parameter artificial intelligence models and real-time spatial computing, processor design has shifted decisively away from uniform general-purpose execution toward heterogeneous specialization. Four distinct silicon paradigms dominate modern computing:
+
  Central Processing Units (CPUs) serve as low-latency control hubs and general-purpose compute engines.
  Graphics Processing Units (GPUs) provide massively parallel throughput for graphics, scientific modeling, and general deep learning.
+ 
  Tensor Processing Units (TPUs) deliver high-density systolic tensor execution for hyperscale cloud training and inference.
  Neural Processing Units (NPUs) enable ultra-low-power, real-time neural inference directly on edge and client devices.
+ 
 This expanded assignment examines the microarchitectural trade-offs, memory hierarchies, arithmetic precision schemes, energy economics, programming ecosystems, and real-world deployment patterns across all four architectures.
 2. Deep-Dive Microarchitecture by Processor Class
 2.1 Central Processing Unit (CPU)
